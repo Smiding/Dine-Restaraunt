@@ -1,0 +1,178 @@
+{% extends 'base.html' %}
+{%load static%}
+{% block content %}
+    <section class="tf__banner">
+        <div class="tf__banner_overlay">
+
+            <div class="col-12 p_0">
+                <div class="tf__banner_slider" style="background: url({% static 'restaraunt/img/banner_bg.jpg' %});"> 
+                    <div class="tf__banner_slider_overlay">
+                        <div class=" container">
+                            <div class="row justify-content-center">
+                                <div class="col-xxl-6 col-xl-6 col-md-10 col-lg-6">
+                                    <div class="tf__banner_text wow fadeInLeft" data-wow-duration="1s">
+                                        <h3>Satisfy Your Cravings</h3>
+                                        <h1>Delicious Foods With Wonderful Eating</h1>
+                                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsum fugit
+                                            minimaet debitis ut distinctio optio.</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="Login" class="tf__signin pt_100 xs_pt_70 pb_100 xs_pb_70">
+        <div class="container">
+            <div class="row justify-content-center wow fadeInUp" data-wow-duration="1s">
+                <div class="col-xl-5 col-sm-10 col-md-8 col-lg-6">
+                    <div class="tf__login_area flex-column h-100 d-flex align-items-center justify-content-center">
+                        <h2>Log-in</h2>
+
+                        <form>
+                            <div class="row">
+                                <div class="col-xl-12">
+                                    <div class="tf__login_imput">
+                                        <input type="email" placeholder="Email">
+                                    </div>
+                                </div>
+                                <div class="col-xl-12">
+                                    <div class="tf__login_imput">
+                                        <input type="password" placeholder="Password">
+                                    </div>
+                                </div>
+                                <div class="col-xl-12">
+
+                                </div>
+                                <div class="col-xl-12">
+                                    <div class="tf__login_imput">
+                                        <button type="submit" class="common_btn">login</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+
+                    </div>
+                </div>
+                <br>
+                <div class="col-xl-5 col-sm-10 col-md-8 col-lg-6 padtop">
+                    <div class="tf__login_area ">
+                        <h2>Sign-up</h2>
+
+                        <form>
+                            <div class="row">
+                                <div class="col-xl-12">
+                                    <div class="tf__login_imput">
+                                        <input type="text" placeholder="Name">
+                                    </div>
+                                </div>
+                                <div class="col-xl-12">
+                                    <div class="tf__login_imput">
+                                        <input type="email" placeholder="Email">
+                                    </div>
+                                </div>
+                                <div class="col-xl-12">
+                                    <div class="tf__login_imput">
+                                        <input type="password" placeholder="Password">
+                                    </div>
+                                </div>
+                                <div class="col-xl-12">
+                                    <div class="tf__login_imput">
+                                        <input type="password" placeholder="Confirm Password">
+                                    </div>
+                                </div>
+                                <div class="col-xl-12">
+                                    <div class="tf__login_imput">
+                                        <button type="submit" class="common_btn">Sign-up</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="tf__reservation mt_100 mb_100 xs_mt_70">
+        <div class="container">
+            <div class="tf__reservation_bg" style="background-color: #ff7c08;">
+                <div class="row">
+                    <div class="col-xl-12 ms-auto">
+                        <div class="tf__reservation_form wow fadeInRight" data-wow-duration="1s">
+                            <h2>book a table</h2>
+                            <form>
+                                <div class="row">
+                                    <div class="col-xl-6 col-lg-6">
+                                        <div class="tf__reservation_input_single">
+                                            <label for="name">name</label>
+                                            <input type="text" id="name" placeholder="Name">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6 col-lg-6">
+                                        <div class="tf__reservation_input_single">
+                                            <label for="email">email</label>
+                                            <input type="email" id="email" placeholder="Email">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6 col-lg-6">
+                                        <div class="tf__reservation_input_single">
+                                            <label for="phone">phone</label>
+                                            <input type="text" id="phone" placeholder="Phone">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6 col-lg-6">
+                                        <div class="tf__reservation_input_single">
+                                            <label for="date">select date</label>
+                                            <input type="date" id="date">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6 col-lg-6">
+                                        <div class="tf__reservation_input_single">
+                                            <label>select time</label>
+                                            <select class="reservation_input select_js">
+                                                <option value="">select</option>
+                                                <option value="">08.00 am to 09.00 am</option>
+                                                <option value="">10.00 am to 11.00 am</option>
+                                                <option value="">12.00 pm to 01.00 pm</option>
+                                                <option value="">02.00 pm to 03.00 pm</option>
+                                                <option value="">04.00 pm to 05.00 pm</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6 col-lg-6">
+                                        <div class="tf__reservation_input_single">
+                                            <label>select person</label>
+                                            <select class="reservation_input select_js">
+                                                <option value="">select</option>
+                                                <option value="">1 person</option>
+                                                <option value="">2 person</option>
+                                                <option value="">3 person</option>
+                                                <option value="">4 person</option>
+                                                <option value="">5 person</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12">
+                                        <button type="submit" class="common_btn">confirm</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   
+{% endblock content %}
+
