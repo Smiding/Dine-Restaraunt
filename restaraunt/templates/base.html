@@ -19,11 +19,10 @@
     <link rel="stylesheet" href="{% static 'restaraunt/css/responsive.css' %}">
 {% block title %}{{ section.title }}{% endblock %}
 </head>
-{{requet.path}}
 <body>
  <nav class="navbar navbar-expand-lg main_menu">
         <div class="container">
-            <a class="navbar-brand" href="index.html">
+            <a class="navbar-brand" href="{%url 'index'%}">
                 <img src="{% static 'restaraunt/img/DineDesk (4).png' %}"alt="DineDesk" class="img-fluid">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -44,14 +43,20 @@
                 </ul>
                 <ul class="menu_icon d-flex flex-wrap sm_p_0">
                     <li class="menu_icon d-flex flex-wrap">
-                        <a href="#Login"><i class="fas fa-user"></i></a>
+                        {%if user.is_authenticated%}
+                            
+                            {{request.user}}<a href="{%url 'logout' %}" name="Login"><i class="fas fa-user"></i></a>
+                        {% else %}
+                        <a href="{%url 'index' %}" name="Login"><i class="fas fa-user"></i></a>
+                        
+                        {%endif%}
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-{% block content %}
+{% block content %} 
 {% endblock %}
  <footer style="background: url(images/footer_bg.jpg);">
         <div class="footer_overlay pt_100 xs_pt_70 pb_100 xs_pb_20">
@@ -60,7 +65,7 @@
                     <div class="col-lg-5 col-sm-12 col-md-6 ">
                         <div class="tf__footer_content">
                             <a class="footer_logo" href="index.html">
-                                <img src="images/DineDesk (4).png" alt="DineDesk" class="img-fluid w-100">
+                                <img src="{% static 'restaraunt/img/DineDesk (4).png' %}" alt="DineDesk" class="img-fluid w-100">
                             </a>
                             <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta facere delectus qui
                                 placeat inventore consectetur repellendus optio debitis.</span>
