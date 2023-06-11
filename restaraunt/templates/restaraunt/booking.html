@@ -1,0 +1,58 @@
+{%extends 'base.html'%}
+{% comment %} {{bookings}} {% endcomment %}
+
+{% block content %}
+    {%include './components/banner.html'%}
+
+
+  <section class=" mt_100 mb_100 xs_mt_70">
+        <div class="container">
+    <a href = "{% url 'booking_create' %}" class="btn btn-primary mb_20 common_btn " style="border-radius: 16px;">Add Booking</a>
+
+            <div class="" style="background-color: #ff7c08;">
+                <div class="row">
+                    <div class="col-xl-12 ms-auto">
+                        <div class="tf__reservation_form wow fadeInRight">
+                            <h2>Booking Details</h2>
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                      <tr>
+                                        <th scope="col">Id</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Date</th>
+                                        <th scope="col">Time</th>
+                                        <th scope="col">Table</th>
+                                        <th scope="col">Persons</th>
+                                        <th scope="col">Action</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                        
+                                        {% for booking in bookings %}
+                                            
+                                        
+                                        <tr>
+                                            <td>{{booking.id}}</td>
+                                            <td>{{booking.owner.username}}</td>
+                                            <td>{{booking.owner.email}}</td>
+                                            <td>{{booking.date}}</td>
+                                            <td>{{booking.time}}</td>
+                                            <td>{{booking.table}}</td>
+                                            <td>{{booking.person}}</td>
+                                            <td><a href="{%url 'booking_delete' booking.id %}" class="btn btn-danger">Delete</a></td>
+                                            
+                                        </tr>
+                                        
+                                        {% endfor %}
+                                    </tbody>
+                                  </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>
+{% endblock content %}

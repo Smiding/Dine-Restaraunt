@@ -1,9 +1,24 @@
+from typing import Any
+from django.db.models.query import QuerySet
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import render, redirect
-from .forms import LoginForm,RegisterForm
+from .forms import LoginForm,RegisterForm, BookingForm
+from django.core.exceptions import ValidationError
+# , BookingForm
+from django.http import HttpResponseBadRequest
+from django.urls import reverse_lazy
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from .models import Booking
+from .mixins import AdminRequiredMixin
+
 def index(request):
+        if request.user.is_authenticated and request.user.is_superuser:
+            return redirect('booking_list')
+        elif request.user.is_authenticated:
+            return redirect('booking_list')
+            
         error = request.GET.get("errors")
 
         context = {"form":LoginForm(),"register":RegisterForm(),"errors":error}
@@ -75,3 +90,45 @@ def logout_view(request):
     if request.method=="POST":
         logout(request)
         return redirect('index')
+    
+
+class BookingListView(ListView):
+    model = Booking
+    template_name = 'restaraunt/booking.html'
+    context_object_name = 'bookings'  
+    def get_queryset(self):
+        if self.request.user.is_superuser:
+            return self.model.objects.all()
+        else:
+            return self.model.objects.filter(owner=self.request.user)
+
+
+class BookingCreateView(CreateView):
+    model = Booking
+    template_name = 'restaraunt/booking_create.html'
+    success_url = reverse_lazy('booking_list')
+    form_class=BookingForm
+
+    def form_valid(self, form):
+        try:
+            form.instance.owner=self.request.user
+            form.is_valid()
+            response= super().form_valid(form)  # Call the parent class method to save the form
+            return response
+        except ValidationError as e:
+            error_message = ', '.join(e.messages)
+            context = {"errors":error_message,"form":BookingForm(initial={'owner':self.request.user})}
+
+        return render(self.request, "restaraunt/booking_create.html", context)
+
+
+class BookingUpdateView(UpdateView,AdminRequiredMixin):
+    model = Booking
+    template_name = 'restaraunt/booking.html'
+    fields = ['Name', 'Capacity', 'status']
+    success_url = reverse_lazy('booking_list')
+
+class BookingDeleteView(DeleteView,AdminRequiredMixin):
+    model = Booking
+    template_name = 'restaraunt/confirm_delete.html'
+    success_url = reverse_lazy('booking_list')

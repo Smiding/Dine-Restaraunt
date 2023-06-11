@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}    {%include './components/banner.html'%}
+
+
+<div class="alert alert-warning mt_100 mb_100 w-50 mx-auto">
+<form method="post" >{% csrf_token %}
+<p>Are you sure you want to delete booking for table "{{ object.table }}"?</p>
+ <input type="submit" class="btn btn-danger btn-lg w-100 mx-auto d-block mx-auto mt_30" style="max-width:fit-content;" value="Confirm" >
+</form></div>
+{% endblock content %}

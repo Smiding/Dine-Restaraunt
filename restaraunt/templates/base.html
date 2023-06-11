@@ -32,7 +32,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav m-auto">
                     <li class="nav-item">
-                        <a class="nav-link {%if request.path == '/'%} active{%endif%}" aria-current="page" href="{%url 'index'%}">Home</a>
+                        <a class="nav-link {%if request.path == '/' or request.path == '/booking/'%} active{%endif%}" aria-current="page" href="{%url 'index'%}">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {%if request.path == '/menu'%} active{%endif%}" href="{%url 'menu'%}">Menu</a>
@@ -40,6 +40,11 @@
                     <li class="nav-item">
                         <a class="nav-link {%if request.path == '/contactus'%} active{%endif%}" href="{%url 'contactus'%}">Contact</a>
                     </li>
+                    {% comment %} {%if request.user.is_superuser%}
+                    <li class="nav-item">
+                        <a class="nav-link {%if request.path == '/tables'%} active{%endif%}" href="{%url 'table_list'%}">Tables</a>
+                    </li>
+                    {%endif%} {% endcomment %}
                 </ul>
                 <ul class="menu_icon d-flex flex-wrap sm_p_0">
                     <li class="menu_icon d-flex flex-wrap">

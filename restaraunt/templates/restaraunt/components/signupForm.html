@@ -1,32 +1,4 @@
-  {% comment %} <form>
-                            <div class="row">
-                                <div class="col-xl-12">
-                                    <div class="tf__login_imput">
-                                        <input type="text" placeholder="Name">
-                                    </div>
-                                </div>
-                                <div class="col-xl-12">
-                                    <div class="tf__login_imput">
-                                        <input type="email" placeholder="Email">
-                                    </div>
-                                </div>
-                                <div class="col-xl-12">
-                                    <div class="tf__login_imput">
-                                        <input type="password" placeholder="Password">
-                                    </div>
-                                </div>
-                                <div class="col-xl-12">
-                                    <div class="tf__login_imput">
-                                        <input type="password" placeholder="Confirm Password">
-                                    </div>
-                                </div>
-                                <div class="col-xl-12">
-                                    <div class="tf__login_imput">
-                                        <button type="submit" class="common_btn">Sign-up</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </form> {% endcomment %}
+
 
 <form method="post" action="{% url 'register' %}">
     {% comment %} {{form.errors}} {% endcomment %}
@@ -34,7 +6,7 @@
     {% comment %} {{ register}} {% endcomment %}
     {% for field in register %}
     <div class="fieldWrapper">
-        {{ field.errors }}
+{#        {{ field.errors }}#}
         {{ field.label_tag }}
          {{ field }}
     </div>
