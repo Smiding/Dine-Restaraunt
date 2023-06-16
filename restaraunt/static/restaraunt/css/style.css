@@ -141,13 +141,13 @@ button {
 
 .common_btn:hover {
     background: var(--colorBlack);
-    padding: 12px 25px 12px 55px;
+    /* padding: 12px 25px 12px 55px; */
     color: var(--colorWhite);
 }
 
 .common_btn:hover::after {
     opacity: 1;
-    left: 17px;
+    /* left: 17px; */
 }
 
 .tf__section_heading h4 {

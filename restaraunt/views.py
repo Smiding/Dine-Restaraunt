@@ -11,7 +11,8 @@ from django.http import HttpResponseBadRequest
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from .models import Booking
-from .mixins import AdminRequiredMixin
+from .mixins import AdminRequiredMixin,UserorAdminRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 def index(request):
         if request.user.is_authenticated and request.user.is_superuser:
@@ -28,7 +29,7 @@ def index(request):
 
 def menu(request):
     menu_items=[
-        {"name":"menu2_img_1.jpg","category":"Biryani","title":"Hyderabadi biryani","price":"$65.00"},
+        {"name":"menu2_img_1.jpg","category":"Biryani","title":"Hyderabadi","price":"$65.00"},
         {"name":"menu2_img_2.jpg","category":"Chicken","title":"Daria Shevtsova","price":"$80.00"},
         {"name":"menu2_img_3.jpg","category":"Burger","title":"Spicy Burger","price":"$100.00"},
         {"name":"menu2_img_4.jpg","category":"Dessert","title":"Fried Chicken","price":"$99.00"},
@@ -59,14 +60,10 @@ def login_view(request):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
-                # Redirect to a success page
                 return redirect('index')
             else:
-                # Return an 'invalid login' error message
                 error_message = 'Invalid login credentials'
                 return redirect('/'+ f'?errors={error_message}')
-
-            # return render(request, 'restaraunt/index.html',{'register':RegisterForm(),'errors':error_message,'form':LoginForm()})
     else:
         return redirect('index')
 
@@ -80,7 +77,6 @@ def register(request):
             form.save()
             return redirect('index')
         return render(request, 'restaraunt/index.html',{'register':RegisterForm(),'errors':form.errors,'form':LoginForm()})
-            # return redirect('index')  # Replace 'login' with your desired URL for the login page
     else:
         register = RegisterForm()
         form = LoginForm()
@@ -103,7 +99,7 @@ class BookingListView(ListView):
             return self.model.objects.filter(owner=self.request.user)
 
 
-class BookingCreateView(CreateView):
+class BookingCreateView(CreateView,LoginRequiredMixin):
     model = Booking
     template_name = 'restaraunt/booking_create.html'
     success_url = reverse_lazy('booking_list')

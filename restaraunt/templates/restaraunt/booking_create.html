@@ -4,11 +4,12 @@
 {% block content %}
     {%include './components/banner.html'%}
 <div class="mt_50 mb_50 pt_20 pb_20 mx-auto " style="border:5px solid lightgrey;width:max-content; border-radius: 16px">
-{% if error %}
+{% if errors %}
 <div class="alert alert-warning  w-50 mx-auto">
     {{errors}}
 </div>
     {% endif %}
+    {{errors}}
 <form method="post" action="{% url 'booking_create' %}" class="w-50 mx-auto">
     {% csrf_token %}
     {{form}}
