@@ -2,18 +2,23 @@
 {% load static %}
 
 {% block content %}
-    {%include './components/banner.html'%}
-<div class="mt_50 mb_50 pt_20 pb_20 mx-auto " style="border:5px solid lightgrey;width:max-content; border-radius: 16px">
-{% if errors %}
-<div class="alert alert-warning  w-50 mx-auto">
-    {{errors}}
-</div>
-    {% endif %}
-    {{errors}}
-<form method="post" action="{% url 'booking_create' %}" class="w-50 mx-auto">
-    {% csrf_token %}
-    {{form}}
-    <input type="submit" value="Confirm" class="mt_30 common_btn">
-</form>
-</div>
+    {% include './components/banner.html' %}
+    <div class="mt_50 mb_50 pt_20 pb_20 mx-auto  "
+         style=" border-radius: 16px">
+        {% if errors %}
+            <div class="alert alert-warning  w-50 mx-auto">
+                {{ errors }}
+            </div>
+        {% endif %}
+        <div class="tf__login_area flex-column h-100 d-flex align-items-center justify-content-center">
+            <h2>Table Booking</h2>
+
+            <form method="post" action="{% url 'booking_create' %}" class="w-50 mx-auto create_booking_form">
+                {% csrf_token %}
+                {{ form }}
+                <input type="submit" value="Confirm" class="mt_30 common_btn">
+            </form>
+        </div>
+    </div>
+    </div>
 {% endblock %}

@@ -44,9 +44,8 @@ def menu(request):
     return render(request, "restaraunt/menu.html", context)
 
 def contactus(request):
-    context = {
-    }
-    return render(request, "restaraunt/contact.html", context)
+
+    return render(request, "restaraunt/contact.html",)
 
 
 
@@ -88,7 +87,7 @@ def logout_view(request):
         return redirect('index')
     
 
-class BookingListView(ListView):
+class BookingListView(LoginRequiredMixin,ListView):
     model = Booking
     template_name = 'restaraunt/booking.html'
     context_object_name = 'bookings'  
@@ -99,7 +98,7 @@ class BookingListView(ListView):
             return self.model.objects.filter(owner=self.request.user)
 
 
-class BookingCreateView(CreateView,LoginRequiredMixin):
+class BookingCreateView(LoginRequiredMixin,CreateView):
     model = Booking
     template_name = 'restaraunt/booking_create.html'
     success_url = reverse_lazy('booking_list')
