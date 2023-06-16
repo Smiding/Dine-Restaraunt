@@ -48,9 +48,12 @@ class Booking(models.Model):
             if table.Capacity >= self.person:
                 booking_start_time = self.datetime - timezone.timedelta(hours=1)
                 booking_end_time = self.datetime + timezone.timedelta(hours=1)
+                # error here
                 existing_bookings = Booking.objects.filter(
                     table=table,
-                    datetime__range=(booking_start_time, booking_end_time)
+                    date=self.date,
+                    time__gte=datetime.datetime.combine(self.date, self.time) - datetime.timedelta(hours=1),
+                    time__lt=datetime.datetime.combine(self.date, self.time) + datetime.timedelta(hours=1)
                 ).exclude(pk=self.pk)
 
                 if not existing_bookings:
